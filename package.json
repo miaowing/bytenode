@@ -1,5 +1,5 @@
 {
-  "name": "bytenode",
+  "name": "@iopen/bytenode",
   "version": "1.1.6",
   "description": "A minimalist bytecode compiler for Node.js",
   "main": "index.js",
@@ -7,9 +7,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OsamaAbbas/bytenode.git"
+    "url": "git+https://github.com/miaowing/bytenode.git"
   },
   "keywords": [
     "bytenode",
@@ -18,10 +21,10 @@
     "compile",
     "compiler"
   ],
-  "author": "Osama Abbas <pw.osama@gmail.com>",
+  "author": "Osama Abbas <pw.osama@gmail.com>, Miaowing <me@zf.ink>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/OsamaAbbas/bytenode/issues"
+    "url": "https://github.com/OsamaAbbas/miaowing/issues"
   },
-  "homepage": "https://github.com/OsamaAbbas/bytenode#readme"
+  "homepage": "https://github.com/OsamaAbbas/miaowing#readme"
 }

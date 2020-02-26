@@ -35,23 +35,28 @@ const program = {
 
 if (program.flags.includes('--compile')) {
 
-  program.files.forEach(function (filename) {
+  function compile(current, files) {
+    files.forEach(function (filename) {
+      filename = path.resolve(current, filename);
+      if (fs.existsSync(filename) && fs.statSync(filename).isFile()) {
 
-    filename = path.resolve(filename);
+        let compileAsModule = !program.flags.includes('--no-module');
 
-    if (fs.existsSync(filename) && fs.statSync(filename).isFile()) {
-
-      let compileAsModule = !program.flags.includes('--no-module');
-
-      try {
-        bytenode.compileFile({ filename, compileAsModule });
-      } catch (error) {
-        console.error(error);
+        try {
+          bytenode.compileFile({ filename, compileAsModule });
+        } catch (error) {
+          console.error(error);
+        }
+      } else if (fs.statSync(filename).isDirectory()) {
+        const dirs = fs.readdirSync(filename);
+        compile(filename, dirs);
+      } else {
+        console.error(`Error: Cannot find file '${filename}'.`);
       }
-    } else {
-      console.error(`Error: Cannot find file '${filename}'.`);
-    }
-  });
+    });
+  }
+
+  compile('.', program.files);
 
   if (program.files.length === 0) {
 
